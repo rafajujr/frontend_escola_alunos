@@ -12,5 +12,21 @@ export const Nav = styled.nav`
     color: #fff;
     margin: 0 10px 0 0;
     font-weight: bold;
+    padding: 0 5px;
+    transition: 300ms;
+
+    &:hover {
+      color: black;
+    }
+  }
+  span {
+    padding: 20px 0px 0px 5px;
+    position: relative;
+    bottom: 5px;
+    transition: 300ms;
+
+    &:hover {
+      color: black;
+    }
   }
 `;

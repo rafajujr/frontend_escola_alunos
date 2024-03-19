@@ -24,14 +24,24 @@ html, body, #root {
   height: 100%;
 }
 
+h1 {
+  text-align: center;
+}
+
 button {
   cursor: pointer;
-  background: ${primaryDarkColor};
+  background: rgba(205, 0, 0, 0.9);
   border: none;
   color: #fff;
   padding: 10px 20px;
   border-radius: 20px;
   font-weight: 700;
+  font-size: 13px;
+  transition: all 300ms;
+}
+
+button:hover {
+  filter: brightness(75%)
 }
 
 a {
@@ -45,16 +55,18 @@ ul {
 
 body .Toastify .Toastify__toast-container .Toastify__toast--success {
   background-color: ${successColor};
+  color: white
 }
 
 body .Toastify .Toastify__toast-container .Toastify__toast--error {
   background-color: ${errorColor};
+  color: white;
 }
 
 `;
 
 export const Container = styled.section`
-  max-width: 360px;
+  max-width: 480px;
   background: #fff;
   margin: 30px auto;
   padding: 30px;

@@ -1,41 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
+import { isEmail } from 'validator';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { get } from 'lodash';
 
-// import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
 import { Container } from '../../styles/globalStyles';
-import { Title } from './styled';
-import * as exampleActions from '../../store/modules/example/action';
+import { Form } from './styled';
+import * as actions from '../../store/modules/auth/action';
 
-export default function Login() {
-  // const history = useHistory();
+import Loading from '../../components/Loading';
+
+export default function Login(props) {
   const dispatch = useDispatch();
 
-  function handleClick(e) {
+  const prevPath = get(props, 'location.state.prevPath', '/');
+
+  const isloading = useSelector((state) => state.auth.isloading);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const hanleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(exampleActions.clicaBotaoRequest());
-    // history.push('/');
-  }
-  /*
-  toast.success('Jesus te ama!', {
-    toastId: 'success1',
-  });
-  toast.error('entrega tua vida a Ele', {
-    toastId: 'Error1',
-  });
-  */
+    let formErros = false;
+
+    if (!isEmail(email)) {
+      formErros = true;
+      toast.error('Email inválido');
+    }
+
+    if (password.length < 6 || password.length > 50) {
+      formErros = true;
+      toast.error('Senha inválida');
+    }
+
+    if (formErros) return;
+
+    dispatch(actions.loginRequest({ email, password, prevPath }));
+  };
 
   return (
     <Container>
-      <Title isRed={false}>
-        Login
-        <small>Oie</small>
-      </Title>
-      <p>Loren 5</p>
+      <Loading isloading={isloading} />
 
-      <button type="button" onClick={handleClick}>
-        Enviar
-      </button>
+      <h1>Login</h1>
+
+      <Form onSubmit={hanleSubmit}>
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Seu email"
+        />
+
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Sua senha"
+        />
+
+        <button type="submit">Acessar</button>
+      </Form>
     </Container>
   );
 }

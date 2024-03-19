@@ -1,3 +1,17 @@
 export const BOTAO_CLICADO_SUCCESS = 'BOTAO_CLICADO_SUCCESS';
 export const BOTAO_CLICADO_REQUEST = 'BOTAO_CLICADO_REQUEST';
 export const BOTAO_CLICADO_FAILURE = 'BOTAO_CLICADO_FAILURE';
+
+// TYPES DO LOGIN
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+// types do Reducer para salvar o header
+export const PERSIST_REHYDRATE = 'persist/REHYDRATE';
+
+// types da pagina register
+export const REGISTER_REQUEST = 'REGISTER_REQUEST';
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_CREATED_SUCCESS = 'REGISTER_CREATED_SUCCESS';
